@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://github.com/areenberg/CyberMoon/blob/main/CyberMoonLogo2.png" width="300">
+<img src="https://github.com/areenberg/CyberMoon/blob/main/CyberMoonLogo2.png" width="1280">
 </h1><br>
 
 
