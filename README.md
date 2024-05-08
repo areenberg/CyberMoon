@@ -13,7 +13,7 @@ To play the game, simply clone the repository
 git clone https://github.com/areenberg/CyberMoon.git
 ```
 
-... and run `python main.py`.
+Now run the game with `python main.py`.
 
 ## Requirements
 
