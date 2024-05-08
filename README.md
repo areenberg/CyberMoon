@@ -1,10 +1,19 @@
-# About
+<h1 align="center">
+<img src="https://github.com/areenberg/CyberMoon/blob/main/CyberMoonLogo.webp" width="300">
+</h1><br>
+
 
 **CyberMoon** is an arcade game taking place in the future, where the player must survive by blowing up hostile space birds. **CyberMoon** is developed using `pygame` in the `Python` language.
 
 # How to play the game
 
-To play the game, simply clone the repository and run `python main.py`.
+To play the game, simply clone the repository
+
+```
+git clone https://github.com/areenberg/CyberMoon.git
+```
+
+... and run `python main.py`.
 
 ## Requirements
 
@@ -19,9 +28,10 @@ The game automatically saves the high score list in a JSON-file named `cm_hs.jso
 
 # License
 
-Copyright 2023 Anders Reenberg Andersen.
+Copyright (c) 2024 Anders Reenberg Andersen
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
