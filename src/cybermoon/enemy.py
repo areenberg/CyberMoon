@@ -1,4 +1,4 @@
-import basicFunctions
+import cybermoon.basicFunctions as basicFunctions
 import math
 import random
 

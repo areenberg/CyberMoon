@@ -1,5 +1,5 @@
-import basicFunctions
-from grenade import grenade
+import cybermoon.basicFunctions as basicFunctions
+from cybermoon.grenade import grenade
 import math
 
 

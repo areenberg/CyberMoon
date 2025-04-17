@@ -2,12 +2,13 @@
 #   PREAMPLE
 # --------------------------------------
 
-from playerEnemyControl import playerEnemyControl
-from theMainMenu import theMainMenu
-from HighScoreList import HighScoreList
-from soundEffects import soundEffects
+from cybermoon.playerEnemyControl import playerEnemyControl
+from cybermoon.theMainMenu import theMainMenu
+from cybermoon.HighScoreList import HighScoreList
+from cybermoon.soundEffects import soundEffects
 import pygame
 import pyautogui
+import os
 
 # ---------------------------------------
 #   INITIAL SETUP
@@ -43,7 +44,8 @@ sounds = soundEffects(pygame)
 
 # The Main Menu Object and High Scores
 highScoreList = HighScoreList(100)
-highScoreList.loadFromFile('cm_hs.json')
+project_root = os.path.dirname(os.path.abspath(__file__))
+highScoreList.loadFromFile(os.path.join(project_root,'cm_hs.json'))
 mainMenu = theMainMenu(pygame,gameDisplay,highScoreList)
 
 # The Control Object (CO).

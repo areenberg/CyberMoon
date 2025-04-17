@@ -1,7 +1,8 @@
-import basicFunctions
+import cybermoon.basicFunctions as basicFunctions
+from cybermoon.menuShrap import menuShrap
+from cybermoon.HighScoreList import HighScoreList
 import random
-from menuShrap import menuShrap
-from HighScoreList import HighScoreList
+import os
 
 class theMainMenu:
 
@@ -377,7 +378,8 @@ class theMainMenu:
             self.sub_menu_number = 1
         elif self.highlightPosition == 5:
             #print("quit the game")
-            self.highScoreList.saveToFile('cm_hs.json')
+            project_root = os.path.dirname(os.path.abspath(__file__))
+            self.highScoreList.saveToFile(os.path.join(project_root,'cm_hs.json'))
             controller.quitTheGame = True
 
     def pauseMenuAction(self,controller):

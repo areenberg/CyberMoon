@@ -1,8 +1,8 @@
-import basicFunctions
+import cybermoon.basicFunctions as basicFunctions
 import math
 import random
 import os
-from shrap import shrap
+from cybermoon.shrap import shrap
 
 class grenade:
 

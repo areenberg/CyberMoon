@@ -1,6 +1,6 @@
-from Player import Player
-from enemy import enemy
-import basicFunctions
+from cybermoon.Player import Player
+from cybermoon.enemy import enemy
+import cybermoon.basicFunctions as basicFunctions
 import math
 import random
 
