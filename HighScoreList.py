@@ -37,10 +37,10 @@ class HighScoreList:
 
     def saveToFile(self,fileName):
         #save the high score list
-
-        with open(fileName, 'w') as file:
-            json.dump({'names': self.nameList, 'scores': self.scoreList}, file)
-        print("High scores saved to",fileName)   
+        if len(self.nameList)>0 and len(self.scoreList)>0:
+            with open(fileName, 'w') as file:
+                json.dump({'names': self.nameList, 'scores': self.scoreList}, file)
+            print("High scores saved to",fileName)   
 
     def fileExists(self,fileName):
         #check if the high score file exists
@@ -48,7 +48,6 @@ class HighScoreList:
     
     def loadFromFile(self, fileName):
         #load the high score list
-        
         if self.fileExists(fileName):
             print("High scores loaded")
             with open(fileName, 'r') as file:
