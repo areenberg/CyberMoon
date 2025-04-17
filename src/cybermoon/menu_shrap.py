@@ -3,63 +3,66 @@ import math
 import random
 
 
-class shrap:
+class menuShrap:
+    # NOTE: NOT THE REGULAR SHRAP TYPE. ONLY USED IN MENU.
 
-    def __init__(self, startPos, startDirection, initRotationSpeed):
-        # startDirection = random.uniform(0,360)
-        # initRotationSpeed = random.uniform(50,65)
+    def __init__(self, startPos, startDir):
+        startDirection = startDir  # start direction in degrees [0,360]
+        initRotationSpeed = random.uniform(1, 2)
 
         self.x = startPos[0]
         self.y = startPos[1]
         self.angle = 0
         self.rotationSpeed = initRotationSpeed
         self.direction = startDirection
-        self.initSpeed = 10
+        self.initSpeed = 0.5
         self.speed = self.initSpeed
-        self.playerPullSpeed = 0
+        self.pullSpeed = 0
         self.standardDist = 1
 
-    def drawShrap(self, pygame, gameDisplay, playerPosition):
+        colors = ["red", "darkGreen", "darkBlue"]
+        self.pcolval = basic_functions.defineColors(colors[random.randint(0, 2)])
+
+    def drawShrap(self, pygame, gameDisplay, mousePosition):
         # DRIFT
 
         # control brake of explosion speed
+        pPos = mousePosition
         displayDim = gameDisplay.get_size()
 
-        driftBrake = 0.01
-        # self.nCalled += 1
-        if self.speed > 0.1:
-            # self.speed = self.initSpeed*(1+driftBrake)**(-self.nCalled)
-            self.speed *= 1 / (1 + driftBrake)
-        else:
-            self.speed = 0
+        # driftBrake = 0.0
+        # if self.speed>0.1:
+        #    self.speed *= 1/(1+driftBrake)
+        # else:
+        #    self.speed = 0
 
-        deltax = playerPosition[0] - self.x
-        deltay = self.y - playerPosition[1]
+        deltax = pPos[0] - self.x
+        deltay = self.y - pPos[1]
         eucdist = math.sqrt(deltax**2 + deltay**2)
         self.standardDist = eucdist / math.sqrt(displayDim[0] ** 2 + displayDim[1] ** 2)
-        pull0 = 0.08
+        pull0 = 0.01
         if self.standardDist > 0.01:
-            self.playerPullSpeed = pull0 / self.standardDist
+            self.pullSpeed = pull0 / self.standardDist
         else:
-            self.playerPullSpeed = 0
+            self.pullSpeed = 0
 
         anglePlayer0 = math.degrees(math.atan(abs(deltay) / abs(deltax)))
         if deltax < 0 and deltay > 0:
             anglePlayer = (180 - anglePlayer0 * 2) + anglePlayer0
-            xPull = -self.playerPullSpeed * math.cos(math.radians(180 - anglePlayer))
-            yPull = self.playerPullSpeed * math.sin(math.radians(180 - anglePlayer))
+            xPull = -self.pullSpeed * math.cos(math.radians(180 - anglePlayer))
+            yPull = self.pullSpeed * math.sin(math.radians(180 - anglePlayer))
         elif deltax < 0 and deltay < 0:
             anglePlayer = anglePlayer0 + 180
-            xPull = -self.playerPullSpeed * math.sin(math.radians(270 - anglePlayer))
-            yPull = -self.playerPullSpeed * math.cos(math.radians(270 - anglePlayer))
+            xPull = -self.pullSpeed * math.sin(math.radians(270 - anglePlayer))
+            yPull = -self.pullSpeed * math.cos(math.radians(270 - anglePlayer))
         elif deltax > 0 and deltay < 0:
             anglePlayer = 360 - anglePlayer0
-            xPull = self.playerPullSpeed * math.cos(math.radians(360 - anglePlayer))
-            yPull = -self.playerPullSpeed * math.sin(math.radians(360 - anglePlayer))
+            xPull = self.pullSpeed * math.cos(math.radians(360 - anglePlayer))
+            yPull = -self.pullSpeed * math.sin(math.radians(360 - anglePlayer))
         else:
             anglePlayer = anglePlayer0
-            xPull = self.playerPullSpeed * math.cos(math.radians(anglePlayer))
-            yPull = self.playerPullSpeed * math.sin(math.radians(anglePlayer))
+            xPull = self.pullSpeed * math.cos(math.radians(anglePlayer))
+            yPull = self.pullSpeed * math.sin(math.radians(anglePlayer))
 
         # control direction
         xCorrection = self.speed * math.cos(math.radians(self.direction)) + xPull
@@ -80,7 +83,7 @@ class shrap:
             self.direction = 360 - self.direction
 
         # ROTATION
-        rotationBrake = 0.01
+        rotationBrake = 0.0
         if self.rotationSpeed > 0.01:
             # self.rotationSpeed = self.rotationSpeed*(1+rotationBrake)**(-self.nCalled)
             self.rotationSpeed *= 1 / (1 + rotationBrake)
@@ -88,7 +91,7 @@ class shrap:
             self.rotationSpeed = 0
 
         self.angle += self.rotationSpeed
-        sideLength = (1 / 100) * displayDim[0]
+        sideLength = (1 / 25) * displayDim[0]
 
         h = (1 / 4) * math.sqrt(3) * sideLength
 
@@ -105,25 +108,20 @@ class shrap:
             self.y - math.sin(math.radians(90 - (self.angle + 240))) * h,
         )
 
-        pygame.draw.polygon(
-            gameDisplay, basic_functions.cool(self.rotationSpeed), (C, B, A), 0
-        )
+        # adjust color
+        self.pcolval = list(self.pcolval)
+        drc = 1e-6
+        self.pcolval[0] -= drc
+        self.pcolval[1] -= drc
+        self.pcolval[2] -= drc
+        self.pcolval[0] = int(self.pcolval[0])
+        self.pcolval[1] = int(self.pcolval[1])
+        self.pcolval[2] = int(self.pcolval[2])
+        self.pcolval = tuple(self.pcolval)
+
+        pygame.draw.polygon(gameDisplay, self.pcolval, (C, B, A), 0)
 
     def position(self):
         # returns the shrap position
 
         return [self.x, self.y]
-
-    def distToPlayer(self):
-        # returns the standardized distance to the player
-
-        return self.standardDist
-
-    def isDeadly(self):
-        # returns if the shrap will be deadly if touched by the enemy
-
-        deadly = False
-        if self.speed > (self.initSpeed * 0.60):
-            deadly = True
-
-        return deadly

@@ -2,10 +2,10 @@
 #   PREAMPLE
 # --------------------------------------
 
-from cybermoon.playerEnemyControl import playerEnemyControl
-from cybermoon.theMainMenu import theMainMenu
-from cybermoon.HighScoreList import HighScoreList
-from cybermoon.soundEffects import soundEffects
+from cybermoon.player_enemy_control import playerEnemyControl
+from cybermoon.the_main_menu import theMainMenu
+from cybermoon.high_score_list import HighScoreList
+from cybermoon.sound_effects import soundEffects
 import pygame
 import pyautogui
 import os
@@ -25,14 +25,14 @@ displayWidth = 1300
 displayHeight = 950
 
 if monitorHeight < displayHeight:
-    displayHeight = int(monitorHeight * (19.0/20.0))
-    displayWidth = int(displayHeight * (4.0/3.0))
+    displayHeight = int(monitorHeight * (19.0 / 20.0))
+    displayWidth = int(displayHeight * (4.0 / 3.0))
 
 
 gameDisplay = pygame.display.set_mode([displayWidth, displayHeight])
 
 # set the game titles
-pygame.display.set_caption('Cyber Moon')
+pygame.display.set_caption("Cyber Moon")
 # the game clock
 clock = pygame.time.Clock()
 # keep the game running
@@ -45,13 +45,13 @@ sounds = soundEffects(pygame)
 # The Main Menu Object and High Scores
 highScoreList = HighScoreList(100)
 project_root = os.path.dirname(os.path.abspath(__file__))
-highScoreList.loadFromFile(os.path.join(project_root,'cm_hs.json'))
-mainMenu = theMainMenu(pygame,gameDisplay,highScoreList)
+highScoreList.loadFromFile(os.path.join(project_root, "cm_hs.json"))
+mainMenu = theMainMenu(pygame, gameDisplay, highScoreList)
 
 # The Control Object (CO).
 # The CO controls all entities and overlay on the current level,
 # i.e. what happens to the player, weapons and enemies.
-controller = playerEnemyControl(gameDisplay,sounds)
+controller = playerEnemyControl(gameDisplay, sounds)
 
 
 # ---------------------------------------
@@ -65,8 +65,7 @@ while not controller.quitTheGame:
         mainMenu.menuControl(pygame, gameDisplay, controller)
         if mainMenu.startTheGame:
             mainMenu.startTheGame = False
-            controller = playerEnemyControl(
-                gameDisplay, sounds)  # reset controller
+            controller = playerEnemyControl(gameDisplay, sounds)  # reset controller
 
     else:
         # GAME

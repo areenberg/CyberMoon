@@ -1,6 +1,7 @@
 import cybermoon.main
 
-class play:    
+
+class play:
     # Starts the game
 
     def __init__(self):
