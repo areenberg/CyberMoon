@@ -137,7 +137,7 @@ class theMainMenu:
                     if event.key == pygame.K_RETURN and controller.playerAlive:
                         self.pauseMenuAction(controller)
                     elif event.key == pygame.K_RETURN and not controller.playerAlive:
-                        print("exit to menu 2")
+                        #print("exit to menu 2")
                         self.addToHighScoreList(controller.score)
                         self.gameOn = False
                         controller.playerAlive = True
@@ -357,37 +357,37 @@ class theMainMenu:
 
     def mainMenuButtonAction(self,controller):
         if self.highlightPosition == 1:
-            print("start the game")
+            #print("start the game")
             self.startTheGame = True
             self.gameOn = True
             self.menu = False
             self.highlightPosition = 0
             del self.menuShraps[:]
         elif self.highlightPosition == 2:
-            print("open high score")
+            #print("open high score")
             self.sub_menu = True
             self.sub_menu_number = 2    
         elif self.highlightPosition == 3:
-            print("open controls")
+            #print("open controls")
             self.sub_menu = True
             self.sub_menu_number = 0
         elif self.highlightPosition == 4:
-            print("open credits")
+            #print("open credits")
             self.sub_menu = True
             self.sub_menu_number = 1
         elif self.highlightPosition == 5:
-            print("quit the game")
+            #print("quit the game")
             self.highScoreList.saveToFile('cm_hs.json')
             controller.quitTheGame = True
 
     def pauseMenuAction(self,controller):
         if self.highlightPosition_sub == 1:
-            print("continue game")
+            #print("continue game")
             self.menu = False
             controller.menu = False
             self.highlightPosition_sub = 0
         elif self.highlightPosition_sub == 2:
-            print("exit to menu 1")
+            #print("exit to menu 1")
             self.gameOn = False
             controller.playerAlive = True
             self.menu = True
@@ -395,7 +395,7 @@ class theMainMenu:
 
     def subMenuAction(self,controller):
         if self.highlightPosition_SubMenu == 1:
-            print("exit to menu 1")
+            #print("exit to menu 1")
             self.menu = True
             self.sub_menu = False
             self.highlightPosition_SubMenu = 0

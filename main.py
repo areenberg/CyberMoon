@@ -2,26 +2,16 @@
 #   PREAMPLE
 # --------------------------------------
 
-import basicFunctions
 from playerEnemyControl import playerEnemyControl
 from theMainMenu import theMainMenu
 from HighScoreList import HighScoreList
 from soundEffects import soundEffects
-import sys
 import pygame
 import pyautogui
 
 # ---------------------------------------
-#   METHODS
-# ---------------------------------------
-
-
-
-# ---------------------------------------
 #   INITIAL SETUP
 # ---------------------------------------
-
-print(sys.version)
 
 # initialize
 pygame.init()
@@ -87,5 +77,4 @@ while not controller.quitTheGame:
     clock.tick(60)  # DO NOT CHANGE - EVERYTHING IS CALIBRATED TO 60
 
 # quit the game when escaping the while-loop
-print("Exiting game")
 pygame.quit()

@@ -40,8 +40,7 @@ class HighScoreList:
         if len(self.nameList)>0 and len(self.scoreList)>0:
             with open(fileName, 'w') as file:
                 json.dump({'names': self.nameList, 'scores': self.scoreList}, file)
-            print("High scores saved to",fileName)   
-
+            
     def fileExists(self,fileName):
         #check if the high score file exists
         return os.path.exists(fileName)
@@ -49,12 +48,9 @@ class HighScoreList:
     def loadFromFile(self, fileName):
         #load the high score list
         if self.fileExists(fileName):
-            print("High scores loaded")
+            #print("High scores loaded")
             with open(fileName, 'r') as file:
                 data = json.load(file)
                 self.nameList = data['names']
                 self.scoreList = data['scores']
                 self.sortList()  #ensure the list is sorted after loading
-        else:
-            print("High scores file",fileName,"could not be found")        
-        

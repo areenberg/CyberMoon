@@ -96,10 +96,10 @@ class playerEnemyControl:
                         
                     del self.enemyList[delIdx[i]]    
                     
-                    print("Enemy killed. Level enemies left:",self.enemyNumber-self.enKilled)
+                    #print("Enemy killed. Level enemies left:",self.enemyNumber-self.enKilled)
 
                     if self.enKilled == self.enemyNumber:
-                        print("LEVEL",self.gameLevel,"COMPLETED")
+                        #print("LEVEL",self.gameLevel,"COMPLETED")
                         self.newLevel = True
                     if i < (len(delIdx)-1):
                         for j in range((i+1),len(delIdx)):
@@ -107,7 +107,7 @@ class playerEnemyControl:
             
             if self.multiKill>1 and self.allEnemiesAlive():
                 multPoints = (self.baseKillPoints*self.multiKill**2-self.baseKillPoints*self.multiKill)
-                print("Multikills:",self.multiKill)
+                #print("Multikills:",self.multiKill)
                 self.score += multPoints
                 self.multiKill=1
 
@@ -128,7 +128,7 @@ class playerEnemyControl:
                 self.player.actions(pygame,event,gameDisplay)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    print("Go to menu")
+                    #print("Go to menu")
                     #self.quitTheGame = True
                     self.menu = True
 
@@ -146,7 +146,7 @@ class playerEnemyControl:
                 threshold = 0.01
                 if dist<threshold:
                     self.playerAlive = False
-                    print("PLAYER DEAD")
+                    #print("PLAYER DEAD")
 
     def stdDistance(self,pos1,pos2,gameDisplay):
         #returns the standardized distance between
@@ -167,7 +167,7 @@ class playerEnemyControl:
 
         if self.newLevel:
             self.gameLevel += 1
-            print("BEGIN LEVEL",self.gameLevel)
+            #print("BEGIN LEVEL",self.gameLevel)
             if self.gameLevel > 1:
                 self.sounds.playNextLevel()
             #number of enemies that needs to be
