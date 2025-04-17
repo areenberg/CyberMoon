@@ -278,10 +278,10 @@ class enemy:
         self.part_col = [] #particle color
         self.particleSpeed = [] #particles initial speed
         for i in range(n_particles):
-            rngl = random.randrange(0,360e8)
-            randAngle = rngl/1.0e8
+            rngl = random.randrange(0,36000000000)
+            randAngle = rngl/100000000
             rndSpd = random.randrange(11000,14000)
-            randSpeed = rndSpd/1.0e3
+            randSpeed = rndSpd/1000
             rColIdx = random.randrange(0,4)
             randColor = colors[rColIdx]
             self.particleSpeed.append(randSpeed)
